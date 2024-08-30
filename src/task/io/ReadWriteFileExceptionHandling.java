@@ -1,43 +1,275 @@
 package task.io;
 
+import java.io.*;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+
 public class ReadWriteFileExceptionHandling {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
+
+//        toDo1("test.txt","Саня, верни сотку!!!");
+//        toDo2();
+//        toDo3(5,0);
+//        toDo4();
+
+//        Bank bank = new Bank();
+//        bank.toDo5(500);
+
+//        toDo6("test.txt");
+//        toDo7("g;jn");
+
+        Student st1 = new Student("lupa");
+        Student st2 = new Student("pupa");
+        List<Student> list1 = new ArrayList<>();
+        list1.add(st1);
+        list1.add(st2);
+//        Student.todo8(list1, "pupa");
+
+
+//
+//        Car car = new Car();
+//        car.toDo10();
+//        car.toDo10();
+toDo11("тестирую эту программу");
 
     }
 
-    // Р РµР°Р»РёР·СѓР№С‚Рµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚СЊ СЃРѕРіР»Р°СЃРЅРѕ РѕРїРёСЃР°РЅРёСЋ
+    // Реализуйте функциональность согласно описанию
 
-    // TODO: РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ СЃРѕР·РґР°РµС‚ РЅРѕРІС‹Р№ С„Р°Р№Р» Рё Р·Р°РїРёСЃС‹РІР°РµС‚ РІ РЅРµРіРѕ РґР°РЅРЅС‹Рµ, РєРѕС‚РѕСЂС‹Рµ РїРµСЂРµРґР°СЋС‚СЃСЏ
-    //  СЃС‚СЂРѕРєРѕР№
+    // TODO1: Напишите программу, которая создает новый файл и записывает в него данные, которые передаются
+    //  строкой
+    public static void toDo1(String name, String text) {
+        try {                                                               //создание файла
+            File file = new File(name);
+            if (file.createNewFile()) {
+                System.out.println("файл создан");
+            } else {
+                System.out.println("файл уже есть");
+            }
+        } catch (IOException e) {
+            System.out.println("ошибка при создании файла");
+            e.printStackTrace();
+        }
 
-    // TODO: РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РІ РєРѕС‚РѕСЂРѕР№ РїСЂРё Р·Р°РїСѓСЃРєРµ РїСЂРёР»РѕР¶РµРЅРёСЏ РІС‹ РІРІРѕРґРёС‚Рµ РІ РєРѕРЅСЃРѕР»СЊ С‚РµРєСЃС‚ Рё РЅР° РѕСЃРЅРѕРІРµ
-    //  РІРІРµРґРµРЅРЅРѕРіРѕ С‚РµРєСЃС‚Р° СЃРѕР·РґР°РµС‚СЃСЏ С„Р°Р№Р»
+        try {                                                               //запись в файл
+            FileWriter writer = new FileWriter(name);
+            writer.write(text);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("ошибка при записи в файл");
+            e.printStackTrace();
+        }
+    }
 
-    // TODO: РЎРѕР·РґР°Р№С‚Рµ РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ РґРµР»РёС‚ РґРІР° С‡РёСЃР»Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚. РћР±СЂР°Р±РѕС‚Р°Р№С‚Рµ РёСЃРєР»СЋС‡РµРЅРёРµ,
-    //  РµСЃР»Рё РІС‚РѕСЂРѕРµ С‡РёСЃР»Рѕ СЂР°РІРЅРѕ РЅСѓР»СЋ , РїРµСЂРµС…РІР°С‚РёС‚Рµ РµРіРѕ(ArithmeticException) Рё РІС‹РІРµРґРёС‚Рµ СЃРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ СЃ С‚РµРєСЃС‚РѕРј
-    //  "Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ Р·Р°РїСЂРµС‰РµРЅРѕ"
 
-    // TODO: РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ СЃС‡РёС‚С‹РІР°РµС‚ С‡РёСЃР»Рѕ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ Рё РІС‹РІРѕРґРёС‚ РµРіРѕ РєРІР°РґСЂР°С‚. Р’С‹Р±СЂРѕСЃРёС‚Рµ
-    //  РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё РІРІРµРґРµРЅРѕ РЅРµ С‡РёСЃР»Рѕ
+    // TODO2: Напишите программу, в которой при запуске приложения вы вводите в консоль текст и на основе
+    //  введенного текста создается файл
 
-    // TODO: РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ, РєРѕС‚РѕСЂС‹Р№ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р±Р°РЅРєРѕРІСЃРєРёР№ СЃС‡РµС‚. Р РµР°Р»РёР·СѓР№С‚Рµ РјРµС‚РѕРґ РґР»СЏ СЃРЅСЏС‚РёСЏ РґРµРЅРµРі СЃРѕ
-    //  СЃС‡РµС‚Р°. Р’С‹Р±СЂРѕСЃРёС‚Рµ РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё РЅР° СЃС‡РµС‚Рµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ.
+    public static void toDo2() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("введи название файла: ");
+        String s = scanner.nextLine();
+        scanner.close();
 
-    // TODO: РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ СЃС‡РёС‚С‹РІР°РµС‚ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р° Рё РІС‹РІРѕРґРёС‚ РёС… РЅР° СЌРєСЂР°РЅ. РћР±СЂР°Р±РѕС‚Р°Р№С‚Рµ
-    //  РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё С„Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ.
+        try {
+            File file = new File(s);
+            if (file.createNewFile()) {
+            } else {
+                System.out.println("файл уже есть");
+            }
+        } catch (IOException e) {
+            System.out.println("ошибка при создании файла");
+            e.printStackTrace();
+        }
+    }
 
-    // TODO: РЎРѕР·РґР°Р№С‚Рµ РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ РїСЂРµРѕР±СЂР°Р·СѓРµС‚ СЃС‚СЂРѕРєСѓ РІ С‡РёСЃР»Рѕ. РћР±СЂР°Р±РѕС‚Р°Р№С‚Рµ РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё СЃС‚СЂРѕРєР° РЅРµ
-    //  РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅР° РІ С‡РёСЃР»Рѕ.
 
-    // TODO: Р РµР°Р»РёР·СѓР№С‚Рµ РєР»Р°СЃСЃ, РєРѕС‚РѕСЂС‹Р№ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ. Р РµР°Р»РёР·СѓР№С‚Рµ РјРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ
-    //  СЃС‚СѓРґРµРЅС‚Р° РІ СЃРїРёСЃРѕРє. Р’С‹Р±СЂРѕСЃРёС‚Рµ РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё СЃРїРёСЃРѕРє СѓР¶Рµ СЃРѕРґРµСЂР¶РёС‚ СЃС‚СѓРґРµРЅС‚Р° СЃ С‚Р°РєРёРј Р¶Рµ РёРјРµРЅРµРј.
+    // TODO3: Создайте метод, который делит два числа и возвращает результат. Обработайте исключение,
+    //  если второе число равно нулю , перехватите его(ArithmeticException) и выведите свое сообщение об ошибке с текстом
+    //  "Деление на ноль запрещено"
+    public static void toDo3(int a, int b) {
+        int c = 0;
+        try {
+            c = a / b;
+            System.out.println(c);
 
-    // TODO:РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ РєРѕС‚РѕСЂС‹Р№ РїСЂРёРЅРёРјР°РµС‚ СЃ РєРѕРЅСЃРѕР»Рё РґРІР° Р·РЅР°С‡РµРЅРёСЏ РґРµР»РёС‚ РѕРґРЅРѕ РЅР° РґСЂСѓРіРѕРµ Рё РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё РІРІРµРґРµРЅС‹ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ:
-    //  Рє РїСЂРёРјРµСЂСѓ СЃ РєРѕРЅСЃРѕР»Рё РїРµСЂРµРґР°Р»Рё СЃС‚СЂРѕРєРё , Р° СЃС‚СЂРѕРєРё РґРµР»РёС‚СЊ РґСЂСѓРі РЅР° РґСЂСѓРіР° РЅРµР»СЊР·СЏ , С‚РѕРіРґР° РІС‹Р±СЂРѕСЃРёС‚Рµ РѕС€РёР±РєСѓ Рё РЅР°РїРёС€РёС‚Рµ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± СЌС‚РѕРј РІ РєРѕРЅСЃРѕР»СЊ
+        } catch (ArithmeticException e) {
+            System.out.println("Деление на ноль запрещено");
+            e.printStackTrace();
+        }
 
-    // TODO: РЎРѕР·РґР°Р№С‚Рµ РєР»Р°СЃСЃ, РєРѕС‚РѕСЂС‹Р№ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р°РІС‚РѕРјРѕР±РёР»СЊ. Р РµР°Р»РёР·СѓР№С‚Рµ РјРµС‚РѕРґ РґР»СЏ Р·Р°РїСѓСЃРєР° РґРІРёРіР°С‚РµР»СЏ.
-    //  Р’С‹Р±СЂРѕСЃРёС‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё РґРІРёРіР°С‚РµР»СЊ СѓР¶Рµ Р·Р°РїСѓС‰РµРЅ.
+    }
 
-    // TODO: РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ СЃРѕР·РґР°РµС‚ С„Р°Р№Р» РёР· С‚РµРєСЃС‚Р°, РєРѕС‚РѕСЂС‹Р№ РїРѕРґР°РµС‚СЃСЏ СЃС‚СЂРѕРєРѕР№, Р° РїРѕС‚РѕРј
-    //  СЃС‡РёС‚С‹РІР°РµС‚ РїРµСЂРІРѕРµ СЃР»РѕРІРѕ РёР· С„Р°Р№Р»Р°
+    // TODO4: Напишите программу, которая считывает число с клавиатуры и выводит его квадрат. Выбросите
+    //  исключение, если введено не число
+    public static void toDo4() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("введи число: ");
+        try {
+            int i = scanner.nextInt();
+            scanner.close();
+            System.out.println(i * i);
+        } catch
+        (InputMismatchException e) {
+            System.out.println("используй цифры!!!");
+            e.printStackTrace();
+        }
+    }
+
+    // TODO5: Создайте класс, который представляет банковский счет. Реализуйте метод для снятия денег со
+    //  счета. Выбросите исключение, если на счете недостаточно средств.
+    static class Bank {
+        int amount = 100;
+
+        public void toDo5(int money) {
+            try {
+                if (amount < money) {
+                    throw new Exception();
+                } else {
+                    System.out.println("кэш снят");
+                }
+            } catch (Exception e) {
+                System.out.println("иди отсюда, бичара");
+            }
+        }
+    }
+
+
+    // TODO6: Напишите программу, которая считывает данные из файла и выводит их на экран. Обработайте
+    //  исключение, если файл не найден.
+
+    public static void toDo6(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                System.out.println(stringBuilder.toString());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("файл не найден");
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // TODO7: Создайте метод, который преобразует строку в число. Обработайте исключение, если строка не
+    //  может быть преобразована в число.
+    public static void toDo7(String s) {
+        try {
+            Integer number = Integer.parseInt(s);
+            System.out.println(number);
+        } catch (NumberFormatException e) {
+            System.out.println("введи число, а не слово");
+            e.printStackTrace();
+        }
+    }
+
+    // TODO8: Реализуйте класс, который представляет список студентов. Реализуйте метод для добавления
+    //  студента в список. Выбросите исключение, если список уже содержит студента с таким же именем.
+    static class Student {
+        private String name;
+
+        public Student(String name) {
+            this.name = name;
+        }
+
+        public static void todo8(List<Student> list, String name0) {
+            int i11 = 0;
+            for (int i = 0; i < list.size(); i++) {
+                for (Student s : list) {
+                    if (s.name == name0) {
+                        i11++;
+                    }
+                }
+            }
+            if (i11>0){
+                System.out.println(new Exception("такое имя есть"));
+            }
+            else {
+                list.add(new Student(name0));
+                System.out.println("студент добавлен");
+            }
+        }
+    }
+
+
+    // TODO9:Напишите программу который принимает с консоли два значения делит одно на другое и обрабатывает исключение, если введены некорректные данные:
+    //  к примеру с консоли передали строки , а строки делить друг на друга нельзя , тогда выбросите ошибку и напишите сообщение об этом в консоль
+
+    public static void toDo9() {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("введи первое число: ");
+            int i1 = scanner.nextInt();
+            System.out.print("введи второе число: ");
+            int i2 = scanner.nextInt();
+            scanner.close();
+            int i0 = i1 / i2;
+            System.out.println("результат деления: " + i0);
+        } catch (InputMismatchException e) {
+            System.out.println("вводить слова нельзя");
+        } catch (ArithmeticException e) {
+            System.out.println("Деление на ноль запрещено");
+        }
+    }
+    // TODO10: Создайте класс, который представляет автомобиль. Реализуйте метод для запуска двигателя.
+    //  Выбросить исключение, если двигатель уже запущен.
+
+    static class Car {
+        static boolean isRun = false;
+
+        public static void toDo10() {
+            if (isRun != true) {
+                isRun = true;
+                System.out.println("двигатель запущен");
+            } else {
+                System.out.println(new Exception("двигатель уже запущен"));
+            }
+
+
+        }
+    }
+
+
+
+// TODO: Напишите программу, которая создает файл из текста, который подается строкой, а потом
+//  считывает первое слово из файла
+
+    //задание: создать файл, у которого первое слово из тексста будет именем?
+
+
+public static void toDo11(String text) {
+        String [] split = text.split(" ");                           //разделяю строку на элементы
+        String nameFile = split[0];                                         //первый элемент
+    try {                                                               //создание файла
+        File file = new File(nameFile);
+        if (file.createNewFile()) {
+            System.out.println("файл создан: " + nameFile+".txt");
+        } else {
+            System.out.println("файл уже есть");
+        }
+    } catch (IOException e) {
+        System.out.println("ошибка при создании файла");
+        e.printStackTrace();
+    }
+
+    try {                                                               //запись в файл
+        FileWriter writer = new FileWriter(nameFile+".txt");
+        writer.write(text);
+        writer.close();
+    } catch (IOException e) {
+        System.out.println("ошибка при записи в файл");
+        e.printStackTrace();
+    }
+}
+
+
 }
